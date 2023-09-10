@@ -1,6 +1,6 @@
 module main/mod
 
-go 1.17
+go 1.21.1
 
 require github.com/wit-ai/wit-go/v2 v2.0.2
 
