@@ -12,8 +12,11 @@ func main() {
 	godotenv.Load(".env")
 
 	client := witai.NewClient(os.Getenv("BEARER_TOKEN"))
-	msg, _ := client.Parse(&witai.MessageRequest{
-		Query: "What should one have in the morning for healthy breakfast?",
-	})
-	fmt.Printf("%v\n", msg.Text)
+	msgs := [2]string{"What should one have in the morning for healthy breakfast?", "What should one have in the morning for light breakfast?"}
+	for i := 0; i < len(msgs); i++ {
+		msg, _ := client.Parse(&witai.MessageRequest{
+			Query: msgs[i],
+		})
+		fmt.Printf("ME: %v\nBOT: %v\n", msgs[i], msg.Traits["wit_breakfast"][0].Value)
+	}
 }
